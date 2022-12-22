@@ -54,7 +54,7 @@ jobs:
         if: github.event_name == 'pull_request'
       - name: set release path
         run: |
-         echo "PAGES_DEPLOY_PATH=latest" >> $GITHUB_ENV
+         echo "PAGES_DEPLOY_PATH=${GITHUB_REF}" >> $GITHUB_ENV
         if: github.event_name == 'release'
       - name: Build Sphinx documentation
         run: |
