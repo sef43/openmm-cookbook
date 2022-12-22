@@ -58,7 +58,7 @@ cookbook_required_files_base_uri = (
 nbsphinx_prolog = """
 {%- set releasename = env.config.release %}
 {%- set docname = env.doc2path(env.docname, base=False) -%}
-{%- set github = "openmm/openmm-cookbook" -%}
+{%- set github = "sef43/openmm-cookbook" -%}
 {%- set on_local = docname.split('/') | last -%}
 {%- set on_github = "https://github.com/" ~ github ~ "/blob/main/" ~ docname -%}
 {%- set on_colab = "https://colab.research.google.com/github/" ~ github ~ "/blob/gh-pages/" ~ releasename ~ "/colab/" ~ docname -%}
