@@ -44,6 +44,15 @@ jobs:
           ls
           conda list
       - name: Build Sphinx documentation
+        env:
+          PAGES_DEPLOY_PATH: dev
+          if: github.event_name == 'push'
+        env:
+          PAGES_DEPLOY_PATH: PR${{ github.event.number }}
+          if: github.event_name == 'pull_request'
+        env:
+          PAGES_DEPLOY_PATH: latest
+          if: github.event_name == 'release'
         run: |
           make html
       - name: Checkout gh-pages
