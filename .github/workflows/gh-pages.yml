@@ -43,16 +43,20 @@ jobs:
           pwd
           ls
           conda list
+          
+      - name: set dev path
+        run: |
+          echo "PAGES_DEPLOY_TYPE=dev" >> $GITHUB_ENV
+        if: github.event_name == 'push'
+      - name: set PR path
+        run: |
+          echo "PAGES_DEPLOY_TYPE=PR${{ github.event.number }}" >> $GITHUB_ENV
+        if: github.event_name == 'pull_request'
+      - name: set release path
+        run: |
+         echo "PAGES_DEPLOY_TYPE=latest" >> $GITHUB_ENV
+        if: github.event_name == 'release'
       - name: Build Sphinx documentation
-        env:
-          PAGES_DEPLOY_PATH: dev
-          if: github.event_name == 'push'
-        env:
-          PAGES_DEPLOY_PATH: PR${{ github.event.number }}
-          if: github.event_name == 'pull_request'
-        env:
-          PAGES_DEPLOY_PATH: latest
-          if: github.event_name == 'release'
         run: |
           make html
       - name: Checkout gh-pages
