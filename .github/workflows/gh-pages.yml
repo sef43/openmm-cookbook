@@ -89,7 +89,7 @@ jobs:
           rm -rf deploy/${GITHUB_REF}
           mkdir -p deploy/${GITHUB_REF}
           mv build/html deploy/${GITHUB_REF}
-          rm deploy/latest
+          rm -rf deploy/latest
           ln -s deploy/${GITHUB_REF} deploy/latest
       - name: Deploy to GitHub Pages
         if: success()
