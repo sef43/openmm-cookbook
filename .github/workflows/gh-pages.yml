@@ -46,15 +46,15 @@ jobs:
           
       - name: set dev path
         run: |
-          echo "PAGES_DEPLOY_TYPE=dev" >> $GITHUB_ENV
+          echo "PAGES_DEPLOY_PATH=dev" >> $GITHUB_ENV
         if: github.event_name == 'push'
       - name: set PR path
         run: |
-          echo "PAGES_DEPLOY_TYPE=PR${{ github.event.number }}" >> $GITHUB_ENV
+          echo "PAGES_DEPLOY_PATH=PR${{ github.event.number }}" >> $GITHUB_ENV
         if: github.event_name == 'pull_request'
       - name: set release path
         run: |
-         echo "PAGES_DEPLOY_TYPE=latest" >> $GITHUB_ENV
+         echo "PAGES_DEPLOY_PATH=latest" >> $GITHUB_ENV
         if: github.event_name == 'release'
       - name: Build Sphinx documentation
         run: |
